@@ -1,0 +1,15 @@
+{
+  "name": "gpt-image-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "gpt-image-mcp": "./server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "latest",
+    "mime-types": "latest",
+    "openai": "latest",
+    "zod": "latest"
+  }
+}

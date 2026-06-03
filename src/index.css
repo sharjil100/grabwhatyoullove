@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+/* ── LOCKED BRAND LOOK as design tokens ───────────────────────────────────
+   Soft blush pink + warm cream, deep burgundy accents, champagne/taupe.
+   These tokens are the single source of truth for the palette. */
+@theme {
+  --color-blush: #f6dcd9;
+  --color-blush-soft: #fbeae7;
+  --color-blush-deep: #eec6c1;
+  --color-cream: #fbf4ec;
+  --color-cream-warm: #f5e9da;
+  --color-champagne: #e7d3b8;
+  --color-taupe: #c9b6a4;
+  --color-burgundy: #6e1f2c;
+  --color-burgundy-soft: #8c3343;
+  --color-ink: #3a2a2c;
+
+  /* deeper rose tones for the bento feature panels (the moody "Sapphire" depth,
+     translated to pink instead of chocolate) + a soft gold accent */
+  --color-rose: #d98a92;
+  --color-rose-deep: #a85561;
+  --color-mauve: #6f3a44;
+  --color-plum: #4e2730;
+  --color-gold: #c79a52;
+
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 18px 50px -22px rgba(110, 31, 44, 0.28);
+  --shadow-card: 0 22px 60px -28px rgba(110, 31, 44, 0.35);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  /* warm cream→blush base wash so every section sits on-brand */
+  background:
+    radial-gradient(1200px 700px at 80% -10%, var(--color-blush-soft), transparent 60%),
+    radial-gradient(1000px 600px at -10% 30%, #fdeee9, transparent 55%),
+    var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-blush-deep);
+  color: var(--color-burgundy);
+}
+
+/* Thin champagne scrollbar to stay in palette */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-champagne);
+  border-radius: 99px;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* ── extra animation utilities ─────────────────────────────────────────── */
+/* sweeping sheen on primary buttons */
+@keyframes shine-sweep {
+  0% { transform: translateX(-130%) skewX(-18deg); }
+  60%, 100% { transform: translateX(260%) skewX(-18deg); }
+}
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  transform: translateX(-130%) skewX(-18deg);
+}
+.shine:hover::after {
+  animation: shine-sweep 0.9s ease;
+}
+
+/* infinite marquee track */
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee-x 26s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* soft breathing glow for the hero ring halo */
+@keyframes haloPulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.08); }
+}
+.halo-pulse {
+  animation: haloPulse 4.5s ease-in-out infinite;
+}
+
+/* Respect prefers-reduced-motion globally: kill long transitions/animations.
+   Framer Motion is additionally gated in JS via useReducedMotion(). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
