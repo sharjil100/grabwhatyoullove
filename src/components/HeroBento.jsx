@@ -47,7 +47,7 @@ export default function HeroBento() {
   );
 
   return (
-    <section id="top" className="relative overflow-hidden px-3 pt-20 md:px-6 md:pt-24">
+    <section id="top" className="relative overflow-hidden px-3 pb-10 pt-20 md:px-6 md:pb-16 md:pt-24">
       {/* moody rose-satin backdrop */}
       <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] md:rounded-[2.5rem]">
         <motion.img
