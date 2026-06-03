@@ -60,7 +60,7 @@ export default function Nav() {
           <img
             src="/images/logo-mark.png"
             alt="grabwhatyoulove"
-            className="h-12 w-12 object-contain md:h-14 md:w-14"
+            className="h-16 w-16 object-contain md:h-20 md:w-20"
           />
         </a>
 

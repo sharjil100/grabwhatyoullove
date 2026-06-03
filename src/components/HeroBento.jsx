@@ -37,7 +37,7 @@ export default function HeroBento() {
   const word = (text, i, italic) => (
     <motion.span
       key={text + i}
-      className={`mr-3 inline-block ${italic ? "italic text-burgundy" : ""}`}
+      className={`mr-3 inline-block ${italic ? "italic text-blush" : ""}`}
       initial={{ opacity: 0, y: 26 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: EASE, delay: 0.15 + i * 0.12 }}
